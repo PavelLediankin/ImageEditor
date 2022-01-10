@@ -32,6 +32,7 @@ namespace MyPhotoshop
 
         private static void RegisterBase(StandardKernel container)
         {
+            container.Bind<IProcessor>().To<Processor>();
             container.Bind<IPhotoStackSaver>().To<PhotoStackSaver>();
         }
 

@@ -66,6 +66,7 @@
     <Compile Include="Filters\FreeTransformer.cs" />
     <Compile Include="Filters\RotateTransformer.cs" />
     <Compile Include="Filters\TransformFilter.cs" />
+    <Compile Include="IProcessor.cs" />
     <Compile Include="Parameters\IParameters.cs" />
     <Compile Include="Parameters\EmptyParameters.cs" />
     <Compile Include="Parameters\IParametersHandler.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Data\Photo.cs" />
     <Compile Include="Filters\IFilter.cs" />
     <Compile Include="Data\Convertors.cs" />
+    <Compile Include="Processor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

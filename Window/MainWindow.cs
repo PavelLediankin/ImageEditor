@@ -11,6 +11,7 @@ namespace MyPhotoshop.Window
 {
     public class MainWindow : Form
     {
+        private readonly IProcessor processor;
         private readonly IPhotoStackSaver stackSaver;
         Bitmap originalBmp;
         Photo originalPhoto;
@@ -26,8 +27,9 @@ namespace MyPhotoshop.Window
         Button redo;
         Button initialPhoto;
 
-        public MainWindow(IFilter[] filters, IPhotoStackSaver stackSaver)
+        public MainWindow(IProcessor processor, IFilter[] filters, IPhotoStackSaver stackSaver)
         {
+            this.processor = processor;
             this.stackSaver = stackSaver;
             var groups = FilterGroupper.GetGrouppedFilters(filters).ToList();
 
@@ -253,7 +255,7 @@ namespace MyPhotoshop.Window
             var parameters = parametersControls.Select(z => (double)z.Value).ToArray();
             var filter = (IFilter)filtersGroups[i].SelectedItem;
             var previousPhoto = stackSaver.CurrentPhoto ?? originalPhoto;
-            var result = filter.Process(previousPhoto, parameters);
+            var result = processor.ProcessPhoto(filter, previousPhoto, parameters);
             var resultBmp = Convertors.Photo2Bitmap(result);
             DrawProcessedImage(resultBmp);
             if (!stackSaver.CanUndo)
